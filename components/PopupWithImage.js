@@ -2,9 +2,9 @@ import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup {
   open(link, name) {
-    super.open();
-    link = this._link;
-    name = this._name;
+    super.open();s
+    this._link = link;
+    this._name = name;
 
     this._popup = document.querySelector(".modal_type_preview-image");
 
