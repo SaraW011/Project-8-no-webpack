@@ -16,7 +16,7 @@ const previewImagePopup = addNewPlacePopup.querySelector(
 );
 
 // wrapper forms
-const profileForm = editProfilePopup.querySelector(".form");
+//const forms = editProfilePopup.querySelector(".form");
 const placeForm = addNewPlacePopup.querySelector(".form-add-place");
 
 // profile name and info:
@@ -51,9 +51,6 @@ const fieldset = {
 };
 
 //**-->> RENDER INITIAL PLACE CARDS <<--*/
-//preview image:
-const previewImage = new PopupWithImage(previewImagePopup);
-previewImage.setEventListeners();
 
 // place initialCards:
 const elementsList = new Section(
@@ -68,6 +65,10 @@ const elementsList = new Section(
 );
 elementsList.renderer();
 
+//preview image:
+const previewImage = new PopupWithImage(previewImagePopup);
+previewImage.setEventListeners();
+
 function renderCard(data) {
   const card = new Card(data, placeTemplate, (link, name) =>
     //note! arrow function binds "open" to original this._popup rather than "card"
@@ -75,16 +76,6 @@ function renderCard(data) {
   );
   placesList.prepend(card.render());
 }
-
-//**-->> ENABLE FORM VALIDATION <<--*/
-
-const getFormsList = Array.from(document.querySelectorAll(formSelector));
-
-getFormsList.forEach((formElement) => {
-  const form = new FormValidator(fieldset, formElement);
-
-  form.enableValidation();
-});
 
 //**-->> FORMS <<--*/
 
@@ -119,7 +110,7 @@ function submitProfileForm(e) {
   profileModal.close();
 }
 
-//---->>>>>>  holds initial values inside form when open:
+//---->>>>>>  holds initial values inside profile form when open:
 function currentProfileName() {
   const userName = userNameElement.textContent;
   const userJob = userJobElement.textContent;
@@ -129,6 +120,15 @@ function currentProfileName() {
   //call @ eventListener
 }
 //<<<<<<----
+
+//**-->> ENABLE FORM VALIDATION <<--*/
+
+const getFormsList = Array.from(document.querySelectorAll(".form"));
+
+getFormsList.forEach((formElement) => {
+  const form = new FormValidator(fieldset, formElement);
+  form.enableValidation();
+});
 
 //**-->> EVENT LISTENERS <<--*/
 
