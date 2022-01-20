@@ -2,7 +2,7 @@ import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup {
   open(link, name) {
-    super.open();s
+    super.open();
     this._link = link;
     this._name = name;
 
