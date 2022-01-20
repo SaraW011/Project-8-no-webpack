@@ -22,11 +22,7 @@ export default class Card {
   _handleDeleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
-  }
-
-  // _imagePopupClick (){
-  // this._handleCardClick({name: this._name, link: this._link})  
-  // }
+  } 
 
   _addEventListeners() {
     this._cardElement
@@ -44,7 +40,7 @@ export default class Card {
       this._cardElement
       .querySelector(".elements__image")
       .addEventListener("click", () => {
-       this._handleCardClick(this._name, this._link)
+       this._handleCardClick(this._link, this._name)
       });
     }
 

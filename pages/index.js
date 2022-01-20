@@ -11,7 +11,9 @@ import UserInfo from "../components/UserInfo.js";
 // wrapper modals
 const editProfilePopup = document.querySelector(".modal_type_edit-profile");
 const addNewPlacePopup = document.querySelector(".modal_type_add-place");
-const previewImagePopup= addNewPlacePopup.querySelector(".modal_type_preview-image")
+const previewImagePopup = addNewPlacePopup.querySelector(
+  ".modal_type_preview-image"
+);
 
 // wrapper forms
 const profileForm = editProfilePopup.querySelector(".form");
@@ -50,9 +52,8 @@ const fieldset = {
 
 //**-->> RENDER INITIAL PLACE CARDS <<--*/
 //preview image:
-const previewImage = new PopupWithImage(previewImagePopup)
-previewImage.setEventListeners()
-
+const previewImage = new PopupWithImage(previewImagePopup);
+previewImage.setEventListeners();
 
 // place initialCards:
 const elementsList = new Section(
@@ -67,11 +68,13 @@ const elementsList = new Section(
 );
 elementsList.renderer();
 
-  function renderCard(data) {
-    const card = new Card(data, placeTemplate, previewImage.open);
-    placesList.prepend(card.render());
+function renderCard(data) {
+  const card = new Card(data, placeTemplate, (link, name) =>
+    //note! arrow function binds "open" to original this._popup rather than "card"
+    previewImage.open(link, name)
+  );
+  placesList.prepend(card.render());
 }
-
 
 //**-->> ENABLE FORM VALIDATION <<--*/
 
@@ -82,7 +85,6 @@ getFormsList.forEach((formElement) => {
 
   form.enableValidation();
 });
-
 
 //**-->> FORMS <<--*/
 
@@ -101,8 +103,6 @@ function submitNewPlaceForm(e) {
   addPlacePopup.close();
 }
 
-
-
 //change user profile info form:
 const userInfo = new UserInfo({ userNameElement, userJobElement });
 
@@ -119,8 +119,8 @@ function submitProfileForm(e) {
   profileModal.close();
 }
 
- //---->>>>>>  holds initial values inside form when open:
- function currentProfileName() {
+//---->>>>>>  holds initial values inside form when open:
+function currentProfileName() {
   const userName = userNameElement.textContent;
   const userJob = userJobElement.textContent;
 
