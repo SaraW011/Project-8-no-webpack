@@ -14,7 +14,7 @@ The project can be viewed locally (on the desktop) using a local server.
 
 ### Github-pages project:
 
-[Link to Github folder](https://github.com/SaraW011/Yandex-Practicum-Around-the-US-Project-8)
+[Link to Github folder](https://github.com/SaraW011/Project-8-no-webpack)
 
 [Link to live page](https://saraw011.github.io/Project-8-no-webpack/)
 
