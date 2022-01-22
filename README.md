@@ -16,7 +16,7 @@ The project can be viewed locally (on the desktop) using a local server.
 
 [Link to Github folder](https://github.com/SaraW011/Yandex-Practicum-Around-the-US-Project-8)
 
-[Link to live page](https://saraw011.github.io/Around-the-US---Sprint-8/)
+[Link to live page](https://saraw011.github.io/Project-8-no-webpack/)
 
 New Tools Used:
 * Webpack
