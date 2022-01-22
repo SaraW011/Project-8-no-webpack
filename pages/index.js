@@ -1,4 +1,4 @@
-import "./index.css";
+// import "./index.css";
 
 import initialCards from "../components/initialCards.js";
 import FormValidator from "../components/FormValidator.js";
