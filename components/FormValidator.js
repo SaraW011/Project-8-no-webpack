@@ -47,12 +47,19 @@ export default class FormValidator {
     return inputList.some((inputElement) => !inputElement.validity.valid);
   }
 
+  //disable submit button after initial submit:
+
+  disableSubmitButton() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.disabled = true;
+  }
+
   // toggle button state after checking validity
+  // -->(!) improve: consider method resetValidation() for clearing errors
 
   _toggleButtonState(inputList) {
     if (this._getInvalidInput(inputList)) {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.disabled = true;
+      this.disableSubmitButton();
     } else {
       this._buttonElement.classList.remove(this._inactiveButtonClass);
       this._buttonElement.disabled = false;
@@ -73,13 +80,6 @@ export default class FormValidator {
         this._toggleButtonState(this._inputList, this._buttonElement);
       });
     });
-  }
-
-  //disable submit button after initial submit:
-  
-  disableSubmitButton() {
-    this._buttonElement.classList.add(this._inactiveButtonClass);
-    this._buttonElement.disabled = true;
   }
 
   //Enable validation for all forms:

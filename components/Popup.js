@@ -1,6 +1,6 @@
 export default class Popup {
-  constructor(popupSelector) {
-    this._popup = popupSelector;
+  constructor(popup) {
+    this._popup = popup;
   }
 
   open() {
@@ -27,22 +27,21 @@ export default class Popup {
       event.target.classList.contains("modal_open") ||
       event.target.classList.contains(`modal__image-wrapper`)
     ) {
-      this.close(event.target);
+      this.close();
     }
   };
 
   setEventListeners() {
-    const closeButtons = document.querySelectorAll(".modal__close-button");
-    closeButtons.forEach((button) =>
-      button.addEventListener("click", (event) => {
-        this.close(event.target.closest(".modal"));
-      })
-    );
+    const closeButton = this._popup.querySelector(".modal__close-button");
+    closeButton.addEventListener("click", () => {
+      this.close();
+    });
   }
 
-  removeEventListeners() {
-    this._popup.classList.remove("modal_open");
-    document.removeEventListener("keydown", this._handleEscClose);
-    document.removeEventListener("click", this._handleOverlayClose);
-  }
+//no longer necessary, not being used:
+//   removeEventListeners() {
+//     this._popup.classList.remove("modal_open");
+//     document.removeEventListener("keydown", this._handleEscClose);
+//     document.removeEventListener("click", this._handleOverlayClose);
+//   }
 }
