@@ -17,7 +17,7 @@ export default class PopupWithForm extends Popup {
   }
 
   handleFormSubmit = (e) => {
-    e.preventDefault(); // is this affecting anything? 
+    // e.preventDefault(); // no longer affecting anything 
     const newCardInput = this._handleFormSubmit(this._getInputValues());
     return newCardInput;
   };
@@ -31,5 +31,4 @@ export default class PopupWithForm extends Popup {
     super.close();
     this._form.reset();
   }
-
 }

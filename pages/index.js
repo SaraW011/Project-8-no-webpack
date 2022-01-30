@@ -18,34 +18,52 @@ import {
   userJobElement,
   inputName,
   inputJob,
-  inputPlace,
-  inputLink,
   openProfileEditButton,
   addNewPlacePopupButton,
   placesList,
   placeTemplate,
-  formSelector,
   fieldset,
 } from "../utils/constants.js";
 
 //**-->> RENDER INITIAL PLACE CARDS <<--*/
 
-// place initialCards:
+//>>>>>>>>>>>>>>>> separated the function below:
 const elementsList = new Section(
   {
     items: initialCards,
-    renderer: (element) => {
-      const newElement = renderCard(element);
-      elementsList.addItem(newElement);
-    },
+    renderer: renderCard,
   },
   placeTemplate
 );
+
 elementsList.renderer();
+
+// place initialCards:
+// const elementsList = new Section(
+//   {
+//     items: initialCards,
+//     renderer: (element) => {
+//       const newElement = renderCard(element);
+//       elementsList.addItem(newElement);
+//     },
+//   },
+//   placeTemplate
+// );
+// elementsList.renderer();
 
 //preview image:
 const previewImage = new PopupWithImage(previewImagePopup);
 previewImage.setEventListeners();
+
+//>>>>>>>>>>>>>>>> separated the function below:
+function renderCard(data) {
+  const card = new Card(data, placeTemplate, handleImagePreview);
+  placesList.prepend(card.render());
+}
+
+function handleImagePreview(link, name) {
+  previewImage.open(link, name);
+}
 
 // function renderCard(data) {
 //   const card = new Card(data, placeTemplate, (link, name) =>
@@ -56,16 +74,6 @@ previewImage.setEventListeners();
 //   placesList.prepend(card.render());
 // }
 
-//>>>>>>>>>>>>>>>> separated the above function:
-function renderCard(data) {
-  const card = new Card(data, placeTemplate, handleImagePreview);
-  placesList.prepend(card.render());
-}
-
-function handleImagePreview(link, name) {
-  previewImage.open(link, name);
-}
-
 //**-->> FORMS <<--*/
 
 //add card form:
@@ -75,19 +83,25 @@ addPlacePopup.setEventListeners();
 //Only method _getInputValues collects data inputs,
 //use the collected data rather than the inputs:
 
-function submitNewPlaceForm(input) {
+function submitNewPlaceForm(data) {
   const insertPlace = renderCard(
-    input
     // name: inputPlace.value,
     // link: inputLink.value,
+
+    //html input "name" values
+    { name: data.place, link: data.link }
   );
+
   elementsList.addItem(insertPlace);
   addPlacePopup.close();
 }
 
 //change user profile info form:
 
-const userInfo = new UserInfo({ userNameElement, userJobElement });
+const userInfo = new UserInfo({
+  userNameElement: userNameElement,
+  userJobElement: userJobElement,
+});
 
 const profileModal = new PopupWithForm(editProfilePopup, submitProfileForm);
 profileModal.setEventListeners();
@@ -95,6 +109,7 @@ profileModal.setEventListeners();
 function submitProfileForm(data) {
   // e.preventDefault(); //moved to class
   userInfo.setUserInfo(
+    //html input "name" values
     { inputName: data.name, inputJob: data.job }
 
     // inputName: inputName.value,

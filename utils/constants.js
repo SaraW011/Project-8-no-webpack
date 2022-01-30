@@ -17,8 +17,9 @@ export const userJobElement = document.querySelector(".profile__title");
 export const inputName = document.querySelector(".form__input_type_name");
 export const inputJob = document.querySelector(".form__input_type_job");
 
-export const inputPlace = addNewPlacePopup.querySelector(".form__input_type_place");
-export const inputLink = addNewPlacePopup.querySelector(".form__input_type_link");
+//no longer in use, use html input "name" values instead
+// export const inputPlace = addNewPlacePopup.querySelector(".form__input_type_place");
+// export const inputLink = addNewPlacePopup.querySelector(".form__input_type_link");
 
 // buttons
 export const openProfileEditButton = document.querySelector(".profile__edit-button");
@@ -31,7 +32,7 @@ export const placeTemplate = document.querySelector(".elements-template").conten
 //**-->> FORM VALIDATION SETTINGS <<--*/
 
 // Assign form elements to variables:
-export const formSelector = ".form";
+//export const formSelector = ".form"; moved to Class Popup
 export const fieldset = {
   inputSelector: ".form__input",
   submitButtonSelector: ".form__button",
