@@ -1,7 +1,7 @@
 // wrapper modals
 export const editProfilePopup = document.querySelector(".modal_type_edit-profile");
 export const addNewPlacePopup = document.querySelector(".modal_type_add-place");
-export const previewImagePopup = addNewPlacePopup.querySelector(
+export const previewImagePopup = document.querySelector(
   ".modal_type_preview-image"
 );
 
