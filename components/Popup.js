@@ -1,6 +1,8 @@
 export default class Popup {
   constructor(popup) {
     this._popup = popup;
+    popup = document.querySelectorAll(".modal")
+    console.log(popup)
   }
 
   open() {
