@@ -11,10 +11,9 @@ export default class PopupWithImage extends Popup {
     super.open();
     this._link = link;
     this._name = name;
-    this._popup.querySelector(".modal__image-caption").textContent = this._name; //define in constructor
+    this._popup.querySelector(".modal__image-caption").textContent = this._name;
 
-    //select the DOM element once and reuse it:
-    const imagePreview = this._popup.querySelector(".modal__image-container"); //define in constructor
+    const imagePreview = this._popup.querySelector(".modal__image-container"); 
     imagePreview.src = this._link;
     imagePreview.alt = this._name;
   }
