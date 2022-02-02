@@ -1,5 +1,0 @@
-/* unhides module popup window when opened */
-.modal_open {
-    /* display: flex; */
-    display: inherit;
-}
